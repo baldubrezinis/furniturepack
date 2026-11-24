@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Furniture Pack for Autodesk Inventor – Help</title>
+<style>
+  body { font-family: "Segoe UI", Arial, sans-serif; max-width: 860px; margin: 24px auto; padding: 0 16px; color: #222; line-height: 1.5; }
+  h1 { font-size: 26px; margin-bottom: 4px; }
+  h2 { font-size: 19px; margin-top: 28px; border-bottom: 1px solid #ddd; padding-bottom: 4px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; }
+  th, td { border: 1px solid #ddd; padding: 6px 8px; text-align: left; vertical-align: top; }
+  th { background: #f3f3f3; }
+  code { background: #f3f3f3; padding: 1px 4px; border-radius: 3px; }
+  .lang { float: right; }
+</style>
+</head>
+<body>
+<p class="lang"><a href="index_lt.html">Lietuviškai</a></p>
+<h1>Furniture Pack for Autodesk Inventor</h1>
+<p>Version 2.1 · Inventor 2027 · by Andrej</p>
+
+<p>Furniture Pack builds frameless carcass furniture in Inventor from a few values: kitchen base and wall units,
+wardrobes, chests of drawers, sideboards and bookcases. It cuts the holes for the hardware, assigns materials
+and edge banding, and writes a cut list for Excel.</p>
+
+<h2>Getting started</h2>
+<ol>
+  <li>Make a new part (<b>File › New › Part</b>), or a new assembly and save it.</li>
+  <li>Open the <b>Furniture</b> tab and click <b>Cabinet</b>. The cabinet window opens and the cabinet parameters are added to the document.</li>
+  <li>Set the sizes and options on the tabs and click <b>Build / Update</b>.</li>
+  <li>Change any value and click <b>Build / Update</b> again: the cabinet is rebuilt.</li>
+  <li>Save the document and click <b>Cut list</b>: an Excel workbook (.xlsx) and a CSV file are written next to the document.</li>
+</ol>
+<p>In a <b>part</b> every panel and every kind of hardware is a solid body. In an <b>assembly</b> every panel is its own
+part file (<code>&lt;Assembly&gt;_&lt;Panel&gt;.ipt</code>, next to the assembly) and the hardware parts are placed as
+components, so the bill of materials counts them. The assembly must be saved before the first build.</p>
+
+<h2>The Furniture tab</h2>
+<table>
+  <tr><th>Button</th><th>What it does</th></tr>
+  <tr><td>Cabinet</td><td>Opens the cabinet window for the active part or assembly.</td></tr>
+  <tr><td>Clear</td><td>Removes the generated bodies (part) or components (assembly). Your own features and components are not touched. You can also remove the cabinet parameters.</td></tr>
+  <tr><td>Cut list</td><td>Writes <code>&lt;Document&gt;_CutList.xlsx</code> and <code>.csv</code> next to the saved document: sizes, quantities, materials, edge banding and the hardware list.</td></tr>
+  <tr><td>Help</td><td>Opens this page.</td></tr>
+</table>
+
+<h2>The cabinet window</h2>
+<table>
+  <tr><th>Tab</th><th>Values</th></tr>
+  <tr><td>Size</td><td>Width, height (without legs), depth; base: legs, plinth or none, leg / plinth height, plinth set-back.</td></tr>
+  <tr><td>Construction</td><td>Board thickness; top between or over the sides; bottom under or between the sides; back: overlay (nailed on), in a groove, inset (thick back) or none, with its thickness and groove.</td></tr>
+  <tr><td>Fronts</td><td>Overlay or inset fronts; 0–2 doors; 0–6 drawers (fronts only) and their height; gaps; concealed 35 mm hinges: automatic count or 2–5 per door, hinge side, distance from the door ends. Hinges are moved away from shelves automatically.</td></tr>
+  <tr><td>Inside</td><td>1–5 vertical sections with partitions and the number of shelves in each section.</td></tr>
+  <tr><td>Hardware</td><td>Joints: cam locks (15 mm), confirmat screws 7×50 or none; shelf support holes at the shelves or a full 32 mm row; wall hangers; show or hide the hardware in the model.</td></tr>
+  <tr><td>Materials</td><td>For the carcass, shelves, back, doors, drawer fronts and plinth: board, edge band and banded edges (none, front, front + back, front + ends, all). Premilling adds a set amount per banded edge to the cut sizes.</td></tr>
+</table>
+<p>Press <b>Enter</b> to build, <b>Esc</b> to close. The window language (English / Lietuvių) can be changed at the bottom of the window;
+the ribbon follows after Inventor is restarted.</p>
+
+<h2>Boards and edge bands</h2>
+<p>The lists are in <code>%APPDATA%\FurniturePack\Materials</code> (<b>Materials › Edit lists…</b> opens the folder):</p>
+<ul>
+  <li><code>Boards.csv</code>: name; thickness (mm); colour (#RRGGBB); Inventor appearance (optional); Inventor material (optional)</li>
+  <li><code>EdgeBands.csv</code>: name; thickness (mm); colour (#RRGGBB); Inventor appearance (optional)</li>
+</ul>
+<p>Open them in Excel or Notepad and add your own lines. A board chosen from the list also sets its thickness
+(carcass → board thickness, back → back thickness, doors → front thickness), its colour and its Inventor material.
+Any other name can be typed into the window as well.</p>
+
+<h2>Coordinates</h2>
+<p>X = width, Y = height (floor = 0), Z = depth. The front of the carcass is at Z = 0 and the carcass goes towards −Z;
+overlay fronts are in +Z.</p>
+
+<h2>Licence</h2>
+<p>Furniture Pack checks the licence with the Autodesk App Store the first time a command is used in an Inventor session.
+Sign in to your Autodesk account in Inventor (top right corner) with the account that bought the app.
+After a successful check the app also works offline for 14 days.</p>
+
+<h2>Troubleshooting</h2>
+<ul>
+  <li><b>No Furniture tab:</b> Tools › Add-Ins, select <i>Furniture Pack</i> and tick <i>Loaded/Unloaded</i> and <i>Load on Startup</i>.</li>
+  <li><b>"Save the assembly first":</b> in an assembly the panels are saved as files next to it, so the assembly needs a folder.</li>
+  <li><b>The cut list cannot be written:</b> close the previous cut list in Excel.</li>
+  <li>The log file is <code>%APPDATA%\FurniturePack\FurniturePack.log</code>. Please attach it when you contact support.</li>
+</ul>
+
+<h2>Uninstall</h2>
+<p>Use <b>Settings › Apps</b> in Windows (or the Autodesk App Store installer). Your lists and settings in
+<code>%APPDATA%\FurniturePack</code> are kept; delete that folder to remove them too.</p>
+
+<h2>Privacy</h2>
+<p>See the <a href="privacy.html">privacy policy</a>: the app sends only your Autodesk user ID to the Autodesk App Store for the licence check.</p>
+
+<h2>Support</h2>
+<p>E-mail: <a href="mailto:baldubrezinis@gmail.com">baldubrezinis@gmail.com</a>. Please attach the log file <code>%APPDATA%\FurniturePack\FurniturePack.log</code>.</p>
+</body>
+</html>
